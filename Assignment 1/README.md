@@ -1,4 +1,3 @@
-# Author: Justin Powell
 # CAP4453 - Spring 2019
 # Assignment 1
 
@@ -10,6 +9,7 @@ Descriptions of each filter and image processing operator will be displayed in c
 All processed images will be saved within an output folder specific to the filter used.
 
 Folders:
+
 box_filters/
 
 median_filters/
