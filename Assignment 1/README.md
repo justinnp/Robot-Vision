@@ -11,12 +11,20 @@ All processed images will be saved within an output folder specific to the filte
 
 Folders:
 box_filters/
+
 median_filters/
+
 gaussian_filters/
+
 directional_gradients/
+
 sobel_filters/
+
 fast_gaussian/
+
 histograms/
+
 entropy_threshold/
+
 canny/
 
