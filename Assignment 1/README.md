@@ -4,9 +4,11 @@
 To run:
 
 Cd into "Code"
+
 Enter "python3 assignment1.py" in the command line.
 
 Descriptions of each filter and image processing operator will be displayed in console.
+
 All processed images will be saved within an output folder specific to the filter used.
 
 Folders:
