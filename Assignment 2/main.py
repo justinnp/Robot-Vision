@@ -97,7 +97,7 @@ def main():
                         help='input batch size for training (default: 64)')
     parser.add_argument('--hidden-size', type=int, default=100, metavar='N',
                         help='hidden layer size for network (default: 100)')
-    parser.add_argument('--weight-decay', type=int, default=0, metavar='N',
+    parser.add_argument('--weight-decay', type=float, default=0, metavar='N',
                         help='Weight decay, used for L2 regularization (default: 0)')
     parser.add_argument('--test-batch-size', type=int, default=1000, metavar='N',
                         help='input batch size for testing (default: 1000)')
@@ -216,7 +216,7 @@ def main():
         args.num_epochs = 40
         args.hiddenSize = 1000
 
-        model = Net(4, args).to(device)
+        model = Net(5, args).to(device)
 
         accuracy = train_and_test(args, device, model, test_loader, train_loader)
 
