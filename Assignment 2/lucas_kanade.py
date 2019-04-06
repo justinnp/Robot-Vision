@@ -14,29 +14,42 @@ def main():
     #file names for the images
     image1_filename = "./basketball1.png"
     image2_filename = "./basketball2.png"
+
     #read the images into a variable
     frame1 = cv2.imread(image1_filename, 0)
     frame2 = cv2.imread(image2_filename, 0)
+
     #lucas kanade optical flow for image1 and image 2
     #create a folder where our single resolution lucas outputs will be stored
     path1 = './Lucas Kanade Outputs/'
     create_folder(path1)
+
+    #run lucas kanade for single resolution
     print()
     print('Running Single Resolution Lucas Kanade. Outputs will be stored in: ' + path1)
     print()
     lucas_kanade(frame1, frame2, path1, 'single_res_lk.png')
+
     #create a folder where our pyramid outputs will be stored
     path2 = './Lucas Kanade Pyramid Outputs/'
     create_folder(path2)
+
+    #run lucas kanade for multi resolution using a 1 level pyr
     print('Running Multi Resolution Lucas Kanade with 1 level Gaussian Pyramid. Outputs will be stored in: ' + path2)
     print()
     multi_resolution(frame1, frame2, path2, 1)
+
+    #run lucas kanade for multi resolution using a 2 level pyr
     print('Running Multi Resolution Lucas Kanade with 2 level Gaussian Pyramid. Outputs will be stored in: ' + path2)
     print()
     multi_resolution(frame1, frame2, path2, 2)
+
+    #run lucas kanade for multi resolution using a 3 level pyr
     print('Running Multi Resolution Lucas Kanade with 3 level Guassian Pyramid. Outputs will be stored in: ' + path2)
     print()
     multi_resolution(frame1, frame2, path2, 3)
+
+    #run lucas kanade for multi resolution using a 4 level pyr
     print('Running Multi Resolution Lucas Kanade with 4 level Gaussian Pyramid. Outputs will be stored in: ' + path2)
     print()
     multi_resolution(frame1, frame2, path2, 4)
@@ -107,11 +120,16 @@ def lucas_kanade(frame1, frame2, path, filename, corners=100):
 
     #iterate through features, adding vector heads, vector tails then eveutally append to image
     for feature in np.int0(features):
-        x,y = feature.ravel()
         #ravel -> flattened array returns (,) shape
+        #"flattened contiguous array"
+        x,y = feature.ravel()
+        
         #draws vector head with radius of 2, color from our generator
         frame_colored = cv2.circle(frame_colored, (x,y), 2, color[0].tolist(), -1)
+
+        #iterator for our for point vectors
         ix = 0
+
         #iterate and add our points to the point vectors
         for i in range(-1,2):
             for j in range(-1,2):
@@ -122,10 +140,13 @@ def lucas_kanade(frame1, frame2, path, filename, corners=100):
 
         #create a matrix from our x and y dimensional point vectors
         matrix = np.array(np.matrix((px,py)))
+
         #transpose said matrix
         matrix_t = np.array(np.matrix.transpose(np.matrix((px,py))))
+
         #dot product of our transpose and original
         matrix_dot = np.dot(matrix, matrix_t)
+
         #inverse matrix, retrieve our final point, dot product of original and inversed dot
         lk = np.dot(np.linalg.inv(matrix_dot), matrix)
 
@@ -135,11 +156,13 @@ def lucas_kanade(frame1, frame2, path, filename, corners=100):
 
         #generate a vector line
         a,b = (int(v[y,x]) + x, int(u[y,x]) + y)
+
         #tail of the vector, will be appeneded to image
         frame_mask = cv2.line(frame_mask, (x,y),(a,b), color[0].tolist(), 2)
 
     #add the vector heads and tails to our image
     img = cv2.add(frame_colored, frame_mask)
+
     #save the image
     cv2.imwrite(path + filename, img)
 
@@ -159,14 +182,17 @@ def multi_resolution(frame1, frame2, path, scale):
     #create copies of our images
     copy1 = frame1
     copy2 = frame2
+
     #for loop to downsample the images based on the scale we are using
     #1,2,3,4 are hardcoded so we will have pyramids with all of those levels
     for i in range(0, scale):
         #pyrdown downsamples an image
         copy1 = cv2.pyrDown(copy1)
         copy2 = cv2.pyrDown(copy2)
+
     #create filename based off the scale we used
     filename = 'multi_res_lk_' + str(scale) + '.png'
+
     #write the file
     lucas_kanade(copy1, copy2, path, filename)
 
