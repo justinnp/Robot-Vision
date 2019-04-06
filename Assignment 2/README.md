@@ -6,6 +6,8 @@ The two inputs are `basketball1.png` and `basketball2.png`
 
 The output folders are `Lucas Kanade Outputs` and `Lucas Kanade Pyramid Outputs`
 
+There are also pre computed frames in the folder `Pre Computed Outputs`
+
 The output images will be placed in their respective folders based on whether it was implemented with single resolution Lucas Kanade or Gaussian Pyramid Lucas Kanade for multi resolution.
 
 Note:
