@@ -8,6 +8,10 @@ The output folders are `Lucas Kanade Outputs` and `Lucas Kanade Pyramid Outputs`
 
 The output images will be placed in their respective folders based on whether it was implemented with single resolution Lucas Kanade or Gaussian Pyramid Lucas Kanade for multi resolution.
 
+Note:
+
+Levels 1, 2, 3 and 4 are used and hard coded within the mult resolution function. There will be 4 multi resolution outputs corresponding to the level used.
+
 To run the script:
 
 `python3 lucas_kanade.py`
