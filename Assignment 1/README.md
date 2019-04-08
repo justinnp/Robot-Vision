@@ -1,7 +1,5 @@
 # CAP4453 - Spring 2019
-# Assignment 1 
-# Canny Edge Detection
-# Median, Guassian, Box, and Sobel Filtering
+# Assignment 1 - Canny Edge Detection - Median, Guassian, Box, and Sobel Filtering
 
 To run:
 
