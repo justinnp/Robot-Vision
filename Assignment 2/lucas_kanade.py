@@ -193,7 +193,7 @@ def multi_resolution(frame1, frame2, path, scale):
     #create filename based off the scale we used
     filename = 'multi_res_lk_' + str(scale) + '.png'
 
-    #write the file
+    #call the lucas_kanade function with the downsampled images which will write the file
     lucas_kanade(copy1, copy2, path, filename)
 
 ##############################################################################################      

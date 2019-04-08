@@ -1,3 +1,13 @@
+Author: 
+
+Justin Powell
+
+CAP4453
+
+University of Central Florida
+
+Spring 2019
+
 # Lucas Kanade
 
 This project folder contains the code for a Lucas Kanade Optical Flow script determining the optical flow for two images as well as implementing a multi-resolution optical flow using Gaussian Pyramids.
